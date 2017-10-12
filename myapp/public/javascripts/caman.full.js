@@ -2604,9 +2604,10 @@
       vignette = true;
     }
     this.greyscale();
-    this.contrast(5);
-    this.noise(3);
-    this.sepia(100);
+    this.contrast(3);
+    this.noise(2);
+    this.sepia(70);
+      this.curves('rgb', [0, 50], [50, 70], [150, 150], [255, 255]);
     this.channels({
       red: 8,
       blue: 2,
@@ -2614,7 +2615,7 @@
     });
     this.gamma(0.87);
     if (vignette) {
-      return this.vignette("40%", 30);
+      return this.vignette("70%", 40);
     }
   });
 
@@ -2622,9 +2623,9 @@
     if (vignette == null) {
       vignette = true;
     }
-    this.brightness(15);
-    this.exposure(15);
-    this.curves('rgb', [0, 0], [200, 0], [155, 255], [255, 255]);
+    this.brightness(8);
+    this.exposure(8);
+    this.curves('rgb', [0, 0], [100, 0], [155, 255], [255, 255]);
     this.saturation(-20);
     this.gamma(1.8);
     if (vignette) {
@@ -2648,15 +2649,6 @@
     return this;
   });
 
-  Caman.Filter.register("sinCity", function() {
-    this.contrast(100);
-    this.brightness(15);
-    this.exposure(10);
-    this.posterize(80);
-    this.clip(30);
-    return this.greyscale();
-  });
-
   Caman.Filter.register("sunrise", function() {
     this.exposure(3.5);
     this.saturation(-5);
@@ -2669,7 +2661,7 @@
     });
     this.contrast(5);
     this.gamma(1.2);
-    return this.vignette("55%", 25);
+    return this.vignette("65%", 25);
   });
 
   Caman.Filter.register("crossProcess", function() {
@@ -2680,7 +2672,9 @@
       blue: 8,
       red: 3
     });
-    this.curves('b', [0, 0], [100, 150], [180, 180], [255, 255]);
+    this.curves('b', [15, 70], [100, 150], [180, 180], [255, 255]);
+    this.curves('r', [15, 70], [150, 150], [180, 180], [255, 255]);
+    this.curves('g', [15, 70], [150, 150], [180, 180], [255, 255]);
     this.contrast(15);
     this.vibrance(75);
     return this.gamma(1.6);
@@ -2701,7 +2695,8 @@
     this.contrast(4);
     this.colorize('#c42007', 30);
     this.vibrance(50);
-    return this.gamma(1.3);
+    this.gamma(1.3);
+    return this.vignette("80%", -30);
   });
 
   Caman.Filter.register("grungy", function() {
@@ -2719,7 +2714,8 @@
     this.curves('r', [0, 0], [144, 90], [138, 120], [255, 255]);
     this.curves('g', [10, 0], [115, 105], [148, 100], [255, 248]);
     this.curves('rgb', [0, 0], [120, 100], [128, 140], [255, 255]);
-    return this.sharpen(20);
+    this.exposure(5);
+    return this.sharpen(10);
   });
 
   Caman.Filter.register("pinhole", function() {
@@ -2727,6 +2723,19 @@
     this.sepia(10);
     this.exposure(10);
     this.contrast(15);
+      this.tiltShift(
+          {
+              center: {
+                  x: this.dimensions.width / 2,
+                  y: this.dimensions.height / 2
+              },
+              angle: 90,
+              focusWidth: 500,
+              startRadius: 3,
+              radiusFactor: 1.2,
+              steps: 3
+          }
+      );
     return this.vignette("60%", 35);
   });
 
@@ -2740,7 +2749,7 @@
       blue: 5
     });
     this.curves('rgb', [0, 0], [80, 50], [128, 230], [255, 255]);
-    return this.vignette("60%", 30);
+    return this.vignette("65%", 30);
   });
 
   Caman.Filter.register("glowingSun", function(vignette) {
@@ -2750,7 +2759,7 @@
     this.brightness(10);
     this.newLayer(function() {
       this.setBlendingMode("multiply");
-      this.opacity(80);
+      this.opacity(60);
       this.copyParent();
       this.filter.gamma(0.8);
       this.filter.contrast(50);
@@ -2883,7 +2892,7 @@
   });
 
   Caman.Filter.register("concentrate", function() {
-    this.sharpen(40);
+    this.sharpen(30);
     this.saturation(-50);
     this.channels({
       red: 3
@@ -2893,8 +2902,8 @@
       this.opacity(80);
       this.copyParent();
       this.filter.sharpen(5);
-      this.filter.contrast(50);
-      this.filter.exposure(10);
+      this.filter.contrast(20);
+      this.filter.exposure(15);
       return this.filter.channels({
         blue: 5
       });

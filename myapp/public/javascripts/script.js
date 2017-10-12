@@ -17,8 +17,8 @@ $(function() {
 
 	*/
 
-	var	maxWidth = 500,
-		maxHeight = 500,
+	var	maxWidth = 700,
+		maxHeight = 700,
 		photo = $('#photo'),
 		originalCanvas = null,
 		filters = $('#filters li a'),
