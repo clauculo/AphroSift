@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+<div class="container">    
     <h1>Kies een filter voor je foto</h1>
     <div id="photo"></div>
     <div id="photoPath" style="display:none"><%= photo %></div>
@@ -37,6 +37,8 @@
         </ul>
     </div>
 
+</div>
+
     <footer class="footer">
         <div class="footercontainer">
                 <div class="upload-btn-wrapper">
@@ -53,6 +55,12 @@
     <script src="javascripts/caman.full.js"></script>
     <script src="javascripts/jquery.mousewheel.min.js"></script>
     <script src="javascripts/script.js"></script>
-
+    <script>
+        $( document ).ready(function() {
+          $( '#fileUploadButton' ).click(function() {
+            alert( 'Dit triggert \'t uploaden van de bewerkte foto naar de kaartmaker. ' );
+          });
+        });
+        </script>
 </body>
 </html>
