@@ -20,12 +20,12 @@
               </nav>
           </div>
 
-        <h1><%= title %></h1>
+        <h1>Beginnen met jouw eigen foto</h1>
         <p>Welkom bij onze super awosome foto filters. <br />Upload een afbeeldig en kies een filter.</p>
 
 
 
-
+        </div>
       <footer class="footer">
           <div class="footercontainer">
               <form ref='uploadForm'
@@ -34,13 +34,17 @@
               method='post'
               encType="multipart/form-data">
               <div class="upload-btn-wrapper">
-                  <input type='submit' class='button' id="fileUploadButton" value='Foto uploaden' />
+                  <!-- <input type='submit' class='button' id="fileUploadButton" value='Kies jouw foto' /> -->
+                  <button type="button" class="arrow-button button" id="fileUploadButton" data-button="">
+                    <div class="arrow-button__button">Kies jouw foto</div>
+                    <div class="arrow-button__arrow"></div>
+                  </button>
                   <input type="file" id="file" name="sampleFile" />
-              <div class="upload-btn-wrapper"></div>
+              </div>
             </form>
           </div>
         </footer>
-      </div>
+    
       <script>
       $( document ).ready(function() {
         $('#file').change(function() {
