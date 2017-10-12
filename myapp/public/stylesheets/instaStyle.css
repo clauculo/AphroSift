@@ -13,14 +13,12 @@
 	General Styles
 --------------------------*/
 
-
-html{
-	background: url('../images/background.jpg') center top no-repeat #141415;
-}
-
 body{
-	font:14px/1.3 'Segoe UI',Arial, sans-serif;
 	position:relative;
+	margin: 0;
+	padding: 0px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	color: #ff9b00; /* Kaartje2go Orange */
 	min-height:500px;
 }
 
@@ -42,15 +40,11 @@ section, footer, header{
 	Heading
 -----------------------------*/
 
-
 h1{
-	font: 48px/1 'Yanone Kaffeesatz', sans-serif;
-	font-weight:200;
-	color:#fff;
-	text-align:center;
-	width:500px;
-	padding:75px 0 50px;
-	margin:0 auto;
+	color: #87be3c;
+	text-align: center;
+	font-size: 2em;
+	margin: 20px auto;
 }
 
 h1 b{
