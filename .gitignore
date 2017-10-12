@@ -1,3 +1,4 @@
 /.idea/*
 .idea/
 /myapp/node_modules/*
+/myapp/public/images/upload/*
