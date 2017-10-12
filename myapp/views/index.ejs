@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Kaartje2go - AphroSift Photo Filters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/stylesheets/sticky-footer.css" rel="stylesheet">
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to AphroSift</p>
+      
+      <div class="container">
+          <div>
+              <nav class="navbar" role="navigation">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="/" class="closePhotoUpload">Annuleren</a></li>
+                </ul>
+              </nav>
+          </div>
 
-        <form ref='uploadForm'
-          id='uploadForm'
-          action='http://localhost:3000/upload'
-          method='post'
-          encType="multipart/form-data">
-            <input type="file" name="sampleFile" />
-            <input type='submit' value='Upload!' />
-        </form>
+        <h1><%= title %></h1>
+        <p>Welkom bij onze super awosome foto filters. <br />Upload een afbeeldig en kies een filter.</p>
 
+
+
+
+      <footer class="footer">
+          <div class="footercontainer">
+              <form ref='uploadForm'
+              id='uploadForm'
+              action='http://192.168.20.38:3000/upload'
+              method='post'
+              encType="multipart/form-data">
+              <div class="upload-btn-wrapper">
+                  <input type='submit' class='button' id="fileUploadButton" value='Foto uploaden' />
+                  <input type="file" id="file" name="sampleFile" />
+              <div class="upload-btn-wrapper"></div>
+            </form>
+          </div>
+        </footer>
+      </div>
+      <script>
+      $( document ).ready(function() {
+        $('#file').change(function() {
+          $('#uploadForm').submit();
+        });
+        $( '.closePhotoUpload' ).click(function() {
+          alert( 'Hiermee zou je dit venster sluiten...' );
+        });
+      });
+      </script>
   </body>
 </html>
