@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
@@ -21,9 +22,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// default options
+app.use(fileUpload());
 
 app.use('/', index);
 app.use('/users', users);
+
+app.post('/upload', function(req, res) {
+    console.log(req.files.sampleFile.name);
+    if (!req.files)
+        return res.status(400).send('No files were uploaded.');
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    let sampleFile = req.files.sampleFile;
+
+    // Use the mv() method to place the file somewhere on your server
+    sampleFile.mv('/var/tmp/' + sampleFile.name, function(err) {
+        if (err)
+            return res.status(500).send(err);
+
+        res.send('File uploaded!');
+    });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
