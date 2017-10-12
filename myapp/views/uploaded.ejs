@@ -1,3 +1,13 @@
 <html>
-    <img src="<%= photo %>"
+    <head>
+        <script type="text/javascript">
+            var photoSource = <%= photo %>;
+        </script>
+    </head>
+    <body>
+        <h1>Hier canvas</h1>
+        <span id="photoSource" style="display:none;"><%= photo %></span><br>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <script src="javascripts/canvasTool.js"></script>
+    </body>
 </html>

@@ -35,7 +35,7 @@ app.post('/upload', function(req, res) {
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     let sampleFile = req.files.sampleFile;
-    let uploadPath = './public/images/upload' + sampleFile.name;
+    let uploadPath = './public/images/upload/' + sampleFile.name;
 
     // Use the mv() method to place the file somewhere on your server
     sampleFile.mv(uploadPath, function(err) {
@@ -43,7 +43,7 @@ app.post('/upload', function(req, res) {
             return res.status(500).send(err);
 
         res.locals.photo = 'images/upload/' + sampleFile.name;
-        res.render('uploaded');
+        res.render('Insta');
     });
 });
 
