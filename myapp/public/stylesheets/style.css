@@ -1,8 +1,71 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ff9b00; /* Kaartje2go Orange */
+}
+
+input {
+  color: #000;
+}
+
+h1 {
+  margin: 20px auto;
+}
+
+p {
+  color: #000;
+}
+
+.navbar .nav li a {
+  background-color: #fff; /* Kaartje2go Green */
+  border: none;
+  color: #4a4a4a;
+  padding: 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+}
+.navbar .nav li a:hover {
+  color: #ccc
+}
+
+.navbar {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  color: #00b8ff; /* Kaartje2go Blue */
 }
 
 a {
   color: #00B7FF;
+}
+
+/* Upload Button */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.button {
+  background-color: #fff; /* Kaartje2go Green */
+  border: none;
+  color: #4a4a4a;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+}
+.button:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+.upload-btn-wrapper input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
