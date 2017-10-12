@@ -18,112 +18,94 @@ $(function() {
 	*/
 
 	var	maxWidth = 700,
-		maxHeight = 600,
+		maxHeight = 500,
 		photo = $('#photo'),
 		originalCanvas = null,
 		filters = $('#filters li a'),
 		filterContainer = $('#filterContainer');
 
-	// Use the fileReader plugin to listen for
-	// file drag and drop on the photo div:
+    // An image has been dropped.
 
-	photo.fileReaderJS({
-		on:{
-			load: function(e, file){
+    var img = $('<img>').appendTo(photo),
+        imgWidth, newWidth,
+        imgHeight, newHeight,
+        ratio;
 
-				// An image has been dropped.
+    // Remove canvas elements left on the page
+    // from previous image drag/drops.
 
-				var img = $('<img>').appendTo(photo),
-					imgWidth, newWidth,
-					imgHeight, newHeight,
-					ratio;
+    photo.find('canvas').remove();
+    filters.removeClass('active');
 
-				// Remove canvas elements left on the page
-				// from previous image drag/drops.
+    // When the image is loaded successfully,
+    // we can find out its width/height:
 
-				photo.find('canvas').remove();
-				filters.removeClass('active');
+    img.load(function() {
 
-				// When the image is loaded successfully,
-				// we can find out its width/height:
+        imgWidth  = this.width;
+        imgHeight = this.height;
 
-				img.load(function() {
+        // Calculate the new image dimensions, so they fit
+        // inside the maxWidth x maxHeight bounding box
 
-					imgWidth  = this.width;
-					imgHeight = this.height;
+        if (imgWidth >= maxWidth || imgHeight >= maxHeight) {
 
-					// Calculate the new image dimensions, so they fit
-					// inside the maxWidth x maxHeight bounding box
+            // The image is too large,
+            // resize it to fit a 500x500 square!
 
-					if (imgWidth >= maxWidth || imgHeight >= maxHeight) {
+            if (imgWidth > imgHeight) {
 
-						// The image is too large,
-						// resize it to fit a 500x500 square!
+                // Wide
+                ratio = imgWidth / maxWidth;
+                newWidth = maxWidth;
+                newHeight = imgHeight / ratio;
 
-						if (imgWidth > imgHeight) {
+            } else {
 
-							// Wide
-							ratio = imgWidth / maxWidth;
-							newWidth = maxWidth;
-							newHeight = imgHeight / ratio;
+                // Tall or square
+                ratio = imgHeight / maxHeight;
+                newHeight = maxHeight;
+                newWidth = imgWidth / ratio;
 
-						} else {
+            }
 
-							// Tall or square
-							ratio = imgHeight / maxHeight;
-							newHeight = maxHeight;
-							newWidth = imgWidth / ratio;
+        } else {
+            newHeight = imgHeight;
+            newWidth = imgWidth;
+        }
 
-						}
+        // Create the original canvas.
 
-					} else {
-						newHeight = imgHeight;
-						newWidth = imgWidth;
-					}
+        originalCanvas = $('<canvas>');
+        var originalContext = originalCanvas[0].getContext('2d');
 
-					// Create the original canvas.
+        // Set the attributes for centering the canvas
 
-					originalCanvas = $('<canvas>');
-					var originalContext = originalCanvas[0].getContext('2d');
+        originalCanvas.attr({
+            width: newWidth,
+            height: newHeight
+        }).css({
+            marginTop: -newHeight/2,
+            marginLeft: -newWidth/2
+        });
 
-					// Set the attributes for centering the canvas
+        // Draw the dropped image to the canvas
+        // with the new dimensions
+        originalContext.drawImage(this, 0, 0, newWidth, newHeight);
 
-					originalCanvas.attr({
-						width: newWidth,
-						height: newHeight
-					}).css({
-						marginTop: -newHeight/2,
-						marginLeft: -newWidth/2
-					});
+        // We don't need this any more
+        img.remove();
 
-					// Draw the dropped image to the canvas
-					// with the new dimensions
-					originalContext.drawImage(this, 0, 0, newWidth, newHeight);
+        filterContainer.fadeIn();
 
-					// We don't need this any more
-					img.remove();
+        // Trigger the default "normal" filter
+        filters.first().click();
+    });
 
-					filterContainer.fadeIn();
+    // Set the src of the img, which will
+    // trigger the load event when done:
 
-					// Trigger the default "normal" filter
-					filters.first().click();
-				});
-
-				// Set the src of the img, which will
-				// trigger the load event when done:
-
-				img.attr('src', e.target.result);
-			},
-
-			beforestart: function(file){
-
-				// Accept only images.
-				// Returning false will reject the file.
-
-				return /^image/.test(file.type);
-			}
-		}
-	});
+    img.attr('src', document.getElementById("photoPath").innerHTML);
 
 	// Listen for clicks on the filters
 
