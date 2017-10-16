@@ -13,8 +13,20 @@
 
 </head>
 <body>
-<div class="container">    
-    <h1>Kies een filter voor je foto</h1>
+<div class="container">
+            <nav class="navbar navbar--left" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li class="semi-active"><a href="./" class="">Terug</a></li>
+                </ul>
+            </nav>
+
+            <nav class="navbar navbar--right" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li class="active "><a href="#" class="" id="fileUploadButton">Volgende</a></li>
+                </ul>
+            </nav>
+        </div>
+    <hr />
     <div id="photo"></div>
     <div id="photoPath" style="display:none"><%= photo %></div>
 
@@ -38,17 +50,6 @@
     </div>
 
 </div>
-
-    <footer class="footer">
-        <div class="footercontainer">
-                <div class="upload-btn-wrapper">
-                    <button type="button" class="arrow-button button" id="fileUploadButton" data-button="">
-                        <div class="arrow-button__button">Gebruik dit filter</div>
-                        <div class="arrow-button__arrow"></div>
-                    </button>
-                </div>
-        </div>
-    </footer>
 
     <!-- Libraries -->
     <script src="javascripts/filereader.min.js"></script>

@@ -17,6 +17,16 @@ body {
   color: #ff9b00; /* Kaartje2go Orange */
 }
 
+hr {
+  background:none;
+	clear:both;
+	float:none;
+	width:100%;
+	height:1px;
+	border:none;
+	margin:-1px 0;
+}
+
 input {
   color: #000;
 }
@@ -47,11 +57,41 @@ p {
   color: #ccc
 }
 
+.navbar .nav li.active a {
+  color: #cf007b;
+}
+.navbar .nav li.active a:hover {
+  color: #4a4a4a;
+}
+
+.navbar .nav li.semi-active a {
+  color: #c9c9c9;
+}
+.navbar .nav li.semi-active a:hover {
+  color: #4a4a4a;
+}
+
 .navbar {
+  width: 50%;
   padding: 0;
   margin: 0;
   border-radius: 0;
   color: #00b8ff; /* Kaartje2go Blue */
+}
+.navbar--left {
+  float: left;
+}
+
+.navbar--left ul {
+  float: left;
+}
+
+.navbar--right {
+  float: right;
+}
+
+.navbar--right ul {
+  float: right;
 }
 
 a {
@@ -149,7 +189,6 @@ a {
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

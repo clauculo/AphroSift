@@ -13,13 +13,13 @@
       
       <div class="container">
           <div>
-              <nav class="navbar" role="navigation">
+              <nav class="navbar navbar--left" role="navigation">
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="/" class="closePhotoUpload">Annuleren</a></li>
+                  <li class="semi-active"><a href="/" class="closePhotoUpload">Annuleren</a></li>
                 </ul>
               </nav>
           </div>
-
+        <hr />
         <h1>Beginnen met jouw eigen foto</h1>
         <p>Welkom bij onze super awosome foto filters. <br />Upload een afbeeldig en kies een filter.</p>
 
@@ -30,7 +30,7 @@
           <div class="footercontainer">
               <form ref='uploadForm'
               id='uploadForm'
-              action='http://192.168.20.38:3000/upload'
+              action='http://localhost:3000/upload'
               method='post'
               encType="multipart/form-data">
               <div class="upload-btn-wrapper">
